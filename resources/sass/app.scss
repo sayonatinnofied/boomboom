@@ -1,0 +1,490 @@
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+$list-pressed-color:inherit !important;
+@import'sencha-touch/default';
+@import'sencha-touch/default/all';
+@font-face {
+    font-family: 'Oregon';
+    src: url('../fonts/Oregon LDO.ttf') format('truetype');
+}
+// Custom font
+@include icon-font('CustomIcons', inline-font-files('fontAwesome/fontawesome-webfont.woff', woff, 'fontAwesome/fontawesome-webfont.ttf', truetype, 'fontAwesome/fontawesome-webfont.svg', svg, 'fontAwesome/fontawesome-webfont.eot', eot));
+// Custom Icons
+@include icon("search", '\f002', "CustomIcons");
+
+/************* Search list starts **************/
+
+.search-list {
+    padding: 0px 6px;
+    margin-top: 50px;
+    font-family: 'Oregon';
+    background-image: url("../images/background.png");
+    background-size: 100% 100%;
+    .x-list-item {
+        border: 1px solid #593b4a !important;
+        margin-top: 5px;
+        border-radius: 2px;
+        background-color: rgba(255, 255, 255, 0.15);
+        .x-innerhtml {
+            padding: 6px !important;
+            // height: 82px;
+        }
+        .search-list-item-container {
+            .search-list-details-field {
+                display:flex;
+                .image-field {
+                    height: 70px;
+                    .video-image {
+                        height: 70px;
+                        width: 80px;
+                        border: 1px solid #4b434b;
+                    }
+                }
+                .description-field {
+                    vertical-align: top;
+                    margin-left: 8px;
+                    .video-name {
+                        color: #d4decd;
+                        white-space: nowrap;
+                        width: 11em;
+                        margin-top: -3px;
+                        font-size: 18px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .artist-name {
+                        color: #5bbfe9;
+                        margin-top: 10px;
+                        font-size: 15px;
+                        letter-spacing: 2px !important;
+                        white-space: nowrap;
+                        width: 11em;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+            .search-list-btn-field {
+                display: flex;
+                visibility: hidden;
+                opacity: 0;
+                height: 0px;
+                transition: all .3s linear;
+                background-color: #F4879D;
+                font-size: 18px;
+                .play-btn {
+                    background-color: #F4879D;
+                    border: 0px !important;
+                    width: 49%;
+                    padding: 5px;
+                    color: #100117;
+                }
+                .play-btn:active{
+                    background-color:#B26171 !important;
+                }
+                .add-btn {
+                    background-color: #F4879D;
+                    border: 0px !important;
+                    width: 49%;
+                    padding: 5px;
+                    text-align: center;
+                    border-left: 1px solid black !important;
+                }
+                .add-btn:active{
+                    background-color:#B26171 !important;
+                }
+            }
+        }
+    }
+}
+.selected-search-list-item {
+    .search-list-btn-field {
+        height: 40px !important;
+        visibility: visible !important;
+        margin-top:7px;
+        padding: 3px 0px;
+        opacity: 1 !important;
+        transition: all .3s linear !important;
+        .add-btn:focus {
+            background-color: #fff;
+        }
+        .play-btn:focus {
+            background-color: #fff;
+        }
+    }
+}
+/************* Search list ends **************/
+/************* Modal Box starts **************/
+
+.modal-box {
+    font-family: 'Oregon';
+    width: 240px !important;
+    height: 220px !important;
+    border-radius: 0px !important;
+    border: 1px solid #959595;
+    box-shadow: none !important;
+    padding: 0px !important;
+    background-image: none !important;
+    background-color: #cbcbcb !important;
+    opacity: 0.93;
+    .modal-close-btn {
+        background-image: url("../images/close.png");
+        background-repeat: no-repeat !important;
+        background-position: center;
+        width: 32px;
+        height: 20px;
+        min-height: 0px !important;
+        border-radius: 30px;
+        margin: -2px 2px 0px 0px;
+    }
+    .x-panel-inner {
+        background-color: #cbcbcb !important;
+        opacity: 0.93;
+        .x-html {
+            padding: 10px !important;
+        }
+        .modal-description {
+            text-align: center;
+            .modal-image {
+                width: 220px;
+                height: 125px;
+                border: 2px solid #d9d8d8;
+            }
+            .modal-video-name {
+                color: #4b494a;
+                font-size: 14px;
+                white-space: nowrap;
+                width: 15em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .modal-artist-name {
+                color: #4b494a;
+                font-size: 13px;
+                letter-spacing: 1px !important;
+            }
+        }
+    }
+    .x-button {
+        border: 0px !important;
+        padding: 0px !important;
+        min-height: 2em !important;
+    }
+    .modal-play-btn, .modal-add-btn {
+        border-radius: 0px !important;
+        background-image: none !important;
+        border-top: 1px solid #b2b0b1 !important;
+        .x-button-label {
+            font-weight: normal !important;
+            font-size: 12px;
+            color: #831944;
+        }
+    }
+    .modal-play-btn {
+        border-right: 1px solid #b2b0b1 !important;
+    }
+}
+/************* Modal Box ends **************/
+/********************* Ipsita ************************/
+
+@include icon("back", "\f112", "CustomIcons");
+@mixin style-toolbar() {
+    background-image: none;
+    background-color: #412b39;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.34) !important;
+    padding: 0px !important;
+}
+@mixin style-video-tool-buttons() {
+    background: no-repeat center !important;
+    background-size: 100% !important;
+}
+/*************** Playlist Page Starts ****************/
+
+.playlist {
+    .x-list-inner {
+        background: #222;
+        -webkit-box-shadow: inset 15px 0px 30px -10px rgba(0, 0, 0, 0.5) !important;
+        border-left: 2px solid rgba(24, 23, 23, 0.36);
+    }
+    
+    .x-toolbar-dark {
+        background-image: none;
+        background-color: #2e1c29 !important;
+        .playlist-clear-btn {
+            font-family: Oregon;
+            color: #ccc !important;
+            background-image: none !important;
+            padding: 10px !important;
+            border-radius: 0px !important;
+            border: 0px !important;
+            font-size: 22px;
+            margin: 0px;
+            .x-button-label {
+                font-family: Oregon;
+                padding-top: 3px;
+            }
+        }
+    }
+    .x-list-item {
+        width: initial;
+        color: #e1e1e1;
+        border-bottom: 1px solid #000 !important;
+        border-top: 1px solid #333 !important;
+        border-left: 5px solid #1B1818;
+        .x-innerhtml {
+            padding: 5px !important;
+            position: relative;
+        }
+    }
+    .x-item-selected {
+        background-image: none !important;
+    }
+    .playlist-delete-icon {
+        color: #5bcaf6;
+        position: absolute;
+        top: 5px;
+        font-size: 22px;
+        display: none;
+    }
+    .show-delete-icon {
+        display: initial!important;
+    }
+    .playlist-album-details-container {
+        display: -webkit-box;
+        position: relative;
+        .playlist-video-details {
+            margin-left: 0px;
+            font-size: 14px;
+            padding-top: 0px;
+            font-family: Oregon;
+            .playlist-video-title {
+                color: #e1e1e1;
+                white-space: nowrap;
+                width: 14em;
+                overflow: hidden;
+                text-wrap: true;
+                text-overflow: ellipsis;
+            }
+            .playlist-artist {
+                color: #5bcaf6;
+                padding-top: 5px;
+            }
+            .playlist-video-duration {
+                color: #b4b4b4;
+                font-size: 12px;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+            }
+        }
+    }
+}
+.x-msgbox-dark {
+    background-color: #412b39;
+    border: 1px solid rgba(255, 255, 255, 0.34) !important;
+    .x-toolbar-dark {
+        .x-innerhtml {
+            font-size: 18px;
+            font-family: Oregon;
+            font-weight: normal;
+        }
+    }
+    .x-dock-body {
+        .x-msgbox-inner {
+            .x-innerhtml {
+                color: #5bcaf6;
+                font-family: Oregon;
+                font-size: 15px;
+                font-weight: normal;
+            }
+        }
+    }
+    .x-msgbox-buttons {
+        .x-button {
+            background-image: none !important;
+            background-color: #554452 !important;
+            border: 1px solid rgba(255, 255, 255, 0.34) !important;
+        }
+    }
+}
+.empty-text {
+    text-align: center;
+    color: #e1e1e1 !important;
+    font-size: 20px !important;
+}
+/************* Playlist item swipe animation starts *************/
+
+.in {
+    -webkit-animation-name: slidein;
+    -webkit-transform: translateX(0px);
+}
+.out {
+    -webkit-animation-name: slideout;
+    -webkit-transform: translateX(-50px);
+}
+.playlist-delete-icon, .playlist {
+    -webkit-animation-duration: .200s;
+    -webkit-transition-timing-function: cubic-bezier(0.275, 0.080, 0.425, 0.855);
+}
+@-webkit-keyframes slideout {
+    from {
+        -webkit-transform: translateX(0px);
+    }
+    to {
+        -webkit-transform: translateX(-50px);
+    }
+}
+@-webkit-keyframes slidein {
+    from {
+        -webkit-transform: translateX(-50px);
+    }
+    to {
+        -webkit-transform: translateX(0px);
+    }
+}
+/************* Playlist item swipe animation ends *************/
+/******************** Playlist Page ENDS ****************************/
+/******************** Video Player Page Starts *******************/
+
+.playlist-clear-btn {
+    height: 47px !important;
+}
+.pressed-playlist-clear-btn {
+    background: rgba(19, 12, 17, 0.65)!important;
+}
+.clear-btn-toolbar {
+    padding: 0px !important;
+    margin: 0px !important;
+    border: 0px !important;
+}
+.navigation-button {
+    background-image: url("../../resources/images/menu.png") !important;
+    background-position-y: 50% !important;
+    background-position-x: 50% !important;
+    background-repeat: no-repeat !important;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    border-radius: 0px;
+    z-index: 1000 !important;
+    position: absolute !important;
+    z-index: 1000 !important;
+}
+.pressed-navigation-btn {
+    background: rgba(19, 12, 17, 0.65) url("../../resources/images/menu.png") no-repeat !important;
+    background-position-y: 50% !important;
+    background-position-x: 50% !important;
+}
+.video-player {
+    background-image: url("../../resources/images/background@2x.png");
+    background-size: 100%;
+}
+.video-player-toolbar {
+    .navigation-button {
+        z-index: 1000 !important;
+    }
+    @include style-toolbar();
+    .x-innerhtml {
+        font-weight: normal;
+        font-family: Oregon;
+        font-size: 22px;
+    }
+}
+.video-control-toolbar {
+    background-image: none;
+    background-color: rgba(65, 43, 57, 0.65) !important;
+    padding: 0px !important;
+    .player-buttons-previous {
+        background-image: url("../../resources/images/previous.png") !important;
+        margin: 0px !important;
+        height: 46px !important;
+        background-repeat: no-repeat !important;
+        width: 41px !important;
+        background-position-y: 50% !important;
+        background-position-x: 50% !important;
+    }
+    .player-buttons-next {
+        background-image: url("../../resources/images/next.png") !important;
+        margin: 0px !important;
+        height: 46px !important;
+        background-repeat: no-repeat !important;
+        width: 41px !important;
+        background-position-y: 50% !important;
+        background-position-x: 50% !important;
+    }
+    .pressed-player-prev-btn {
+        background: rgba(19, 12, 17, 0.65) url("../../resources/images/previous.png") no-repeat !important;
+        background-position-y: 50% !important;
+        background-position-x: 50% !important;
+        border-radius: 0px !important;
+    }
+    .pressed-player-next-btn {
+        background: rgba(19, 12, 17, 0.65) url("../../resources/images/next.png") no-repeat !important;
+        background-position-y: 50% !important;
+        background-position-x: 50% !important;
+        border-radius: 0px !important;
+    }
+    .x-innerhtml {
+        font-weight: normal;
+        font-family: Oregon;
+        font-size: 22px;
+    }
+}
+/********************** Video Player Page Ends ****************/
+/*********************** Home Page ***********************/
+
+.home-background .x-toolbar-dark {
+    background-image: none !important;
+    background-color: rgba(65, 43, 57, 0.65) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.11) !important;
+    margin-bottom: 3px;
+    padding: 0px;
+    .x-innerhtml {
+        font-weight: normal;
+        font-family: Oregon;
+        font-size: 22px;
+    }
+}
+.search-field.x-field-search {
+    width: 100%;
+    margin: 0px 5px;
+    background: none !important;
+    border-bottom: 1px solid #7c7878 !important;
+    .x-field-input:before {
+        top: .55em !important;
+        left:.8em !important;
+    }
+    .x-input-el {
+        background: none !important;
+        -webkit-text-fill-color: #d4decd;
+        font-size: 16px;
+    }
+    .x-form-field {
+        margin-left: 35px !important;
+    }
+    .x-form-field:focus {
+        color: #ccc !important;
+    }
+    .x-clear-icon {
+        background: url("../../resources/images/cross.png") no-repeat !important;
+        background-size: 25% 25% !important;
+        margin-top: -3px !important;
+        right: -30px !important;
+        height: 40px !important;
+        width: 40px !important;
+    }
+}
+/*********************** Home Page Ends ***********************/
+/**************** Toast view starts *************************/
+
+.x-toast {
+    background-color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.34) !important;
+    .x-innerhtml {
+        font-size: 15px;
+        color: #fff;
+    }
+}
+/**************** Toast view Ends *************************/
